@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corazones Mágicos</title>
+    <style>
+        body {
+            background-color: pink;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .carta {
+            display: none;
+            margin: 50px auto;
+            width: 200px;
+            height: 300px;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+            padding: 20px;
+        }
+
+        .boton-rojo {
+            padding: 20px 40px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            margin-top: 50px;
+        }
+
+        .corazon {
+            position: absolute;
+            animation: flotar 5s infinite;
+        }
+
+        @keyframes flotar {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-100px); }
+            100% { transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>¡Haz clic en el botón para abrir la carta!</h1>
+    
+    <button class="boton-rojo" onclick="mostrarCarta()">Abrir Carta</button>
+
+    <div class="carta" id="carta">
+        <h2>¡Sorpresa!</h2>
+        <div id="corazones"></div>
+    </div>
+
+    <script>
+        function mostrarCarta() {
+            const carta = document.getElementById('carta');
+            carta.style.display = 'block';
+            
+            // Crear corazones
+            let corazonesDiv = document.getElementById('corazones');
+            for (let i = 0; i < 10; i++) {
+                let corazon = document.createElement('div');
+                corazon.classList.add('corazon');
+                
+                // Hacer corazones de colores aleatorios
+                let color = Math.random() > 0.5 ? 'red' : 'pink';
+                corazon.style.color = color;
+
+                // Posicionar los corazones aleatoriamente
+                corazon.style.left = Math.random() * 100 + '%';
+                corazon.style.top = Math.random() * 100 + '%';
+                corazon.style.fontSize = (Math.random() * 30 + 20) + 'px';
+
+                corazon.innerHTML = '❤️';
+                corazonesDiv.appendChild(corazon);
+            }
+        }
+    </script>
+
+</body>
+</html>
